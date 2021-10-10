@@ -1,0 +1,12 @@
+[package]
+name = "fmo-server"
+version = "0.1.0"
+publish = false
+edition = "2021"
+
+[dependencies]
+actix-web = "3"
+
+[[bin]]
+name = "fmo-server"
+path = "server/main.rs"
