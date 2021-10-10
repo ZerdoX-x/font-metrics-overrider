@@ -14,7 +14,7 @@ async fn main() -> std::io::Result<()> {
         .expect("PORT must be a number");
 
     HttpServer::new(|| App::new().service(echo))
-        .bind(("127.0.0.1", port))?
+        .bind(("0.0.0.0", port))?
         .run()
         .await
 }
