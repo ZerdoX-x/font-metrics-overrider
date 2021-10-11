@@ -10,4 +10,4 @@ Coming soon
 See [contributing guide](.github/CONTRIBUTING.md)
 
 ## License
-Developed by [@ZerdoX-x](https://github.com/ZerdoX-x) and licensed under the MIT open source license.
+Developed by [@ZerdoX-x](https://github.com/ZerdoX-x), [@douryne](https://github.com/douryne) and licensed under the MIT open source license.
