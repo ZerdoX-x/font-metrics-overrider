@@ -10,5 +10,8 @@
     "@sveltejs/kit": "next",
     "svelte": "^3.42.6"
   },
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "latest-version": "^6.0.0"
+  }
 }

@@ -1,6 +1,65 @@
-<h1 on:click="{() => counter++}">{counter}</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-
 <script>
-    let counter = 0;
+
+	function dropHandler(event) {
+		const files = event.dataTransfer.files;
+
+		handleFiles(files);
+	}
+
+	function changeHandler(event) {
+		const files = event.target.files;
+
+		handleFiles(files);
+	}
+
+	function handleFiles(files) {
+		sendFiles(files);
+	}
+
+	function sendFiles(acceptedFiles) {
+  	const data = new FormData();
+
+		for (const file of acceptedFiles) {
+			data.append('files[]', file, file.name);
+		}
+
+		return fetch('http://localhost:3000/', {
+			method: 'POST',
+			body: data,
+		});
+	}
+
 </script>
+
+<svelte:body
+	on:dragenter|stopPropagation|preventDefault
+	on:dragover|stopPropagation|preventDefault
+	on:drop|stopPropagation|preventDefault="{dropHandler}"
+/>
+
+<label for="file-upload">
+	<input id="file-upload" type="file" accept=".woff, .ttf, .otf, .woff2, .sfnt" on:change="{changeHandler}" multiple />
+	<svg width="50" height="50" viewBox="0 0 99.09 122.88">
+		<title>file-upload</title>
+		<path d="M64.64,13,86.77,36.21H64.64V13ZM42.58,71.67a3.25,3.25,0,0,1-4.92-4.25l9.42-10.91a3.26,3.26,0,0,1,4.59-.33,5.14,5.14,0,0,1,.4.41l9.3,10.28a3.24,3.24,0,0,1-4.81,4.35L52.8,67.07V82.52a3.26,3.26,0,1,1-6.52,0V67.38l-3.7,4.29ZM24.22,85.42a3.26,3.26,0,1,1,6.52,0v7.46H68.36V85.42a3.26,3.26,0,1,1,6.51,0V96.14a3.26,3.26,0,0,1-3.26,3.26H27.48a3.26,3.26,0,0,1-3.26-3.26V85.42ZM99.08,39.19c.15-.57-1.18-2.07-2.68-3.56L63.8,1.36A3.63,3.63,0,0,0,61,0H6.62A6.62,6.62,0,0,0,0,6.62V116.26a6.62,6.62,0,0,0,6.62,6.62H92.46a6.62,6.62,0,0,0,6.62-6.62V39.19Zm-7.4,4.42v71.87H7.4V7.37H57.25V39.9A3.71,3.71,0,0,0,61,43.61Z"/>
+	</svg>
+</label>
+
+
+<style>
+:global(body) {
+	margin: 0;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+label {
+	margin: auto;
+	cursor: pointer;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+</style>

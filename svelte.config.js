@@ -2,7 +2,7 @@
 const config = {
 	kit: {
 		// hydrate the <div id="svelte"> element in client/app.html
-		target: '#svelte',
+		target: 'body',
 		files: {
 			hooks: 'client/hooks',
 			lib: 'client/lib',
